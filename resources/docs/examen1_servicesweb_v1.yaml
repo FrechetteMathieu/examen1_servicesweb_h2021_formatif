@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Examen 1
+  description: Services Web H2021
+  
+servers: 
+  - url: http://localhost/examen1_serviceweb_h2021_formatif
+paths:
+  /utilisateur/{id}:
+    get:
+      tags:
+        - Utilisateur
+      summary: Sélection d'un utilisateur
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: Le id de l'utilisateur
+          schema:
+            type: integer
+      requestBody:
+        description: Exemple de définition de body
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              example:
+                email : 'ishufflebothami@nasa.gov'
+      responses:
+        '200': 
+          description: 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utilisateur'
+
+components:
+  schemas:
+    
+    Utilisateur:
+      type: object
+      required:
+        - description
+      properties:
+        id:
+          type: integer
+          format: int64
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+          id: 1
+          first_name: 'Iolanthe'
+          last_name: 'Shufflebotham'
+          email: 'ishufflebothami@nasa.gov'
+          password: 'c8c237fb35ada9fb874829cb342a40fd2ea32dc6d78479221c5ab12e51033a99'
+  
